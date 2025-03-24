@@ -1,0 +1,81 @@
+.toggle {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s;
+}
+
+.circle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: black;
+    border-radius: 50%;
+    transition: transform 0.5s, background 0.5s;
+}
+
+.toggle:hover .circle {
+    background: orange;
+}
+
+.dark .circle {
+    transform: scale(2);
+    background: white;
+}
+
+.moon {
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background: #121212;
+    border-radius: 50%;
+    right: -12px;
+    top: -8px;
+    transform: translateX(12px);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.1s;
+}
+
+.dark .moon {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+svg {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+}
+
+.sun-beams line {
+    stroke: black;
+    stroke-width: 2;
+    transition: transform 0.3s, stroke 0.3s;
+    transform-origin: center;
+}
+
+@keyframes rotateBeams {
+    0% { transform: rotate(0deg); }
+    90% { transform: rotate(90deg); }
+    100% { transform: rotate(80deg); }
+}
+
+@keyframes rotateBeamsReverse {
+    0% { transform: rotate(80deg); }
+    50% { transform: rotate(90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.toggle:hover .sun-beams line {
+    stroke: orange;
+    animation: rotateBeams 0.3s ease-in-out forwards;
+}
+
+.toggle:not(:hover) .sun-beams line {
+    stroke: black;
+    animation: rotateBeamsReverse 0.3s ease-in-out forwards;
+}
